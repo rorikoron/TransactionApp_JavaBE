@@ -1,0 +1,10 @@
+com\example\demo\DemoApplication.class
+com\example\demo\repository\MenuRepository.class
+com\example\demo\entity\Menu.class
+com\example\demo\entity\Transaction.class
+com\example\demo\controller\MenuController.class
+com\example\demo\repository\TransactionRepository.class
+com\example\demo\controller\ItemRequest.class
+com\example\demo\service\TransactionService.class
+com\example\demo\controller\ApiController.class
+com\example\demo\controller\OrderRequest.class

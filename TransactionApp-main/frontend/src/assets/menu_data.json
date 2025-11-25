@@ -1,0 +1,39 @@
+[
+    {
+        "name": "Hamburger",
+        "category": "food",
+        "price": 120
+    }, {
+        "name": "Sandwich",
+        "category": "food",
+        "price": 240
+    }, {
+        "name": "Coffe",
+        "category": "drink",
+        "price": 110
+    }, {
+        "name": "Late",
+        "category": "food",
+        "price": 240
+    }, {
+        "name": "Fruit",
+        "category": "drink",
+        "price": 110
+    }, {
+        "name": "Juice",
+        "category": "food",
+        "price": 240
+    }, {
+        "name": "DogFood",
+        "category": "drink",
+        "price": 110
+    }, {
+        "name": "Banana",
+        "category": "food",
+        "price": 240
+    }, {
+        "name": "CatFood",
+        "category": "drink",
+        "price": 110
+    }
+]
