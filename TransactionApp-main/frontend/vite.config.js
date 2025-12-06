@@ -12,6 +12,12 @@ export default defineConfig({
       },"/menu": {
         target: "http://localhost:3001",
         secure: false,
+      },"/outer": {
+        target: "http://localhost:3001",
+        secure: false,
+      },"/inter": {
+        target: "http://localhost:3001",
+        secure: false,
       },
     },
   },

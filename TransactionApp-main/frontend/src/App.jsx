@@ -19,23 +19,58 @@ const StyledApp = styled.div`
     }
 
 `;
+const StyledModal = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+`;
 
 
 export default function App(){
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [contentType, setContentType] = useState("Content");
 
-    const [message, setMessage] = useState();
+    const [staff, setStaff] = useState([]);
+    const [selectedStaff, setSelectedStaff] = useState(null);   
     useEffect(() => {
-        fetch('/api')
-            .then((res) => res.json())
-            .then((data) => setMessage(data));
-    }, []);
+        const load = async () => {
+            const [interRes, outerRes] = await Promise.all([
+                fetch('/inter').then(r => r.json()),
+                fetch('/outer').then(r => r.json())
+            ]);
+
+            setStaff([...interRes, ...outerRes]);  // 結合する
+        };
+
+    load();
+}, []);
+
 
     return(
         <OrderProvider>
             <StyledApp sidebarOpen={sidebarOpen}>
-                <Sidebar isOpen={sidebarOpen} setOpen={setSidebarOpen} setContent={setContentType}/>
+                <Sidebar isOpen={sidebarOpen} setOpen={setSidebarOpen} setContent={setContentType} />
+                {
+                    !selectedStaff && <StyledModal><h1>選擇工作人員</h1>
+                    <select value={selectedStaff} onChange={e => setSelectedStaff(e.target.value)}>
+                        {
+                            staff?.map((staffMember) => (
+                                <option key={staffMember.id} value={staffMember.id}>
+                                    {staffMember.name}
+                                </option>
+                            ))
+                        }
+                    </select></StyledModal>
+
+                }
+
                 {
                     {
                         "Content": <Content/>,
