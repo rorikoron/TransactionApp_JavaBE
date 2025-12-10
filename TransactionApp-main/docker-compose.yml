@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+    mysql:
+        image: mysql:8.0
+        container_name: mysql-sa
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: sa
+            MYSQL_USER: sa
+            MYSQL_PASSWORD: 1234567890
+            TZ: UTC
+        volumes:
+            - mysql-sa-data:/var/lib/mysql
+            - ./mysql/init:/docker-entrypoint-initdb.d
+
+volumes:
+    mysql-sa-data:

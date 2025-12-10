@@ -119,7 +119,7 @@ export default function MenuOrders({order}){
         setExistOrder(order.filter(({quantity}) => quantity>0));
     }, [order]);
     useEffect(() => {
-        if (selectedPaymentMethod === "payed" || selectedPaymentMethod === "credit card" || selectedPaymentMethod === "cash") {
+        if (selectedPaymentMethod === "payed" || selectedPaymentMethod === "credit card" || selectedPaymentMethod === "line pay") {
             const timer = setTimeout(() => {
                 setSelectedPaymentMethod(null);
             }, 2000);
@@ -208,7 +208,7 @@ export default function MenuOrders({order}){
                         <StyledTouchButton key={method} onClick={() => {setSelectedPaymentMethod(method); postAsync();}}>{method}</StyledTouchButton>
                 ))) : selectedPaymentMethod === 'cash' ? (
                     <>
-                    <h1>Line Pay Selected</h1><input type="text" placeholder={`請輸入現金`} value={cash} onChange={(e) => setCash(e.target.value)}/><h2>找零: {cash < totalAmount ? '餘額不足' : '$'+( cash-totalAmount) }</h2>
+                    <h1>Cash Selected</h1><input type="text" placeholder={`請輸入現金`} value={cash} onChange={(e) => setCash(e.target.value)}/><h2>找零: {cash < totalAmount ? '餘額不足' : '$'+( cash-totalAmount) }</h2>
                     {
                         //這裡偷懶
                     }
