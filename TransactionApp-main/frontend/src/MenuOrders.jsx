@@ -122,6 +122,7 @@ export default function MenuOrders({order}){
         if (selectedPaymentMethod === "payed" || selectedPaymentMethod === "credit card" || selectedPaymentMethod === "line pay") {
             const timer = setTimeout(() => {
                 setSelectedPaymentMethod(null);
+                postAsync();
             }, 2000);
 
             return () => clearTimeout(timer);  // クリーンアップ
@@ -205,7 +206,7 @@ export default function MenuOrders({order}){
             <StyledModal>
                 { selectedPaymentMethod === 'waiting' ? (
                     paymentMethod.slice(1).map( (method) => (
-                        <StyledTouchButton key={method} onClick={() => {setSelectedPaymentMethod(method); postAsync();}}>{method}</StyledTouchButton>
+                        <StyledTouchButton key={method} onClick={() => {setSelectedPaymentMethod(method);}}>{method}</StyledTouchButton>
                 ))) : selectedPaymentMethod === 'cash' ? (
                     <>
                     <h1>Cash Selected</h1><input type="text" placeholder={`請輸入現金`} value={cash} onChange={(e) => setCash(e.target.value)}/><h2>找零: {cash < totalAmount ? '餘額不足' : '$'+( cash-totalAmount) }</h2>
